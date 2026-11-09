@@ -1,5 +1,5 @@
 {
-  "name": "decision-table",
+  "name": "presenting-decisions",
   "type": "skill",
   "version": "1.0.0",
   "summary": "Put every decision to the owner in a fixed, self-contained table so they can decide with one word.",
@@ -7,7 +7,7 @@
   "triggers": ["decision for the owner", "approval needed", "open questions", "which option", "what should I decide", "open points summary"],
   "install": {
     "source": "skill/",
-    "target": ".claude/skills/decision-table/"
+    "target": ".claude/skills/presenting-decisions/"
   },
   "compatible_with": ["claude-code"],
   "requires": [],

@@ -18,22 +18,6 @@
       "path": "packages/cockpit/"
     },
     {
-      "name": "decision-table",
-      "type": "skill",
-      "version": "1.0.0",
-      "summary": "Put every decision to the owner in a fixed, self-contained table so they can decide with one word.",
-      "problem": "Agents present decisions as bare lines that force the owner to reconstruct context, which is slow and error-prone.",
-      "triggers": [
-        "decision for the owner",
-        "approval needed",
-        "open questions",
-        "which option",
-        "what should I decide",
-        "open points summary"
-      ],
-      "path": "packages/decision-table/"
-    },
-    {
       "name": "exploring-first",
       "type": "skill",
       "version": "1.0.0",
@@ -47,6 +31,22 @@
         "three or more tool calls expected"
       ],
       "path": "packages/exploring-first/"
+    },
+    {
+      "name": "presenting-decisions",
+      "type": "skill",
+      "version": "1.0.0",
+      "summary": "Put every decision to the owner in a fixed, self-contained table so they can decide with one word.",
+      "problem": "Agents present decisions as bare lines that force the owner to reconstruct context, which is slow and error-prone.",
+      "triggers": [
+        "decision for the owner",
+        "approval needed",
+        "open questions",
+        "which option",
+        "what should I decide",
+        "open points summary"
+      ],
+      "path": "packages/presenting-decisions/"
     }
   ]
 }

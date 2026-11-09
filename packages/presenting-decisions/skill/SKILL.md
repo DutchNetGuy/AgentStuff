@@ -1,10 +1,10 @@
 ---
-name: decision-table
+name: presenting-decisions
 description: "Fixed format for putting decisions to the owner: one table with, per decision, the question, the purpose, a plain explanation and a concrete advice, fully self-contained (no bare ticket references, no reliance on the owner's memory). Use when one or more decisions or choices wait for the owner, when a summary contains open points the owner must judge, when the owner asks for context on a choice, or when the owner invokes the skill. Keywords: decision, decisions, put a decision, approval needed, open questions, which option, what should I decide, decision for the owner, context for a choice, decision table."
 version: "1.0"
 ---
 
-# Decision table
+# Presenting decisions
 
 ## Why this skill exists
 

@@ -1,6 +1,6 @@
 # How the author uses it
 
-The author runs a personal assistant called Jarvis on top of Claude Code. This is how decision-table is set up there. Adapt it to your own environment.
+The author runs a personal assistant called Jarvis on top of Claude Code. This is how presenting-decisions is set up there. Adapt it to your own environment.
 
 ## The owner reads only the table
 

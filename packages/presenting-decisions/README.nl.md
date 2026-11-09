@@ -1,4 +1,4 @@
-# decision-table
+# presenting-decisions
 
 ## Waarom
 
@@ -38,7 +38,7 @@ Dit zijn observaties uit het eigen gebruik van de auteur, geen gecontroleerd ond
 
 ## Installeren
 
-1. Kopieer `skill/` naar `.claude/skills/decision-table/` in je project.
+1. Kopieer `skill/` naar `.claude/skills/presenting-decisions/` in je project.
 2. Pas twee dingen aan in `SKILL.md`: de naam van je tracker (waar besluit en reden daarna worden vastgelegd) en of je een pagina-kanaal hebt voor grote besluiten. Heb je dat niet, verwijder dan de pagina-regel of verwijs naar elke pagina die je agent kan publiceren.
 
 Zie `examples/how-the-author-uses-it.md` voor één echte opzet.

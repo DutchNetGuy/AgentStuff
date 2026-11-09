@@ -1,4 +1,4 @@
-# decision-table
+# presenting-decisions
 
 ## Why
 
@@ -38,7 +38,7 @@ These are observations from the author's own use, not a controlled study.
 
 ## Install
 
-1. Copy `skill/` to `.claude/skills/decision-table/` in your project.
+1. Copy `skill/` to `.claude/skills/presenting-decisions/` in your project.
 2. Adapt two things in `SKILL.md`: the name of your tracker (where the decision and reason are recorded afterwards), and whether you have a page channel for large decisions. If you have none, remove the page rule or point it at any page your agent can publish.
 
 See `examples/how-the-author-uses-it.md` for one real setup.
