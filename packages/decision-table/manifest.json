@@ -1,0 +1,24 @@
+{
+  "name": "decision-table",
+  "type": "skill",
+  "version": "1.0.0",
+  "summary": "Put every decision to the owner in a fixed, self-contained table so they can decide with one word.",
+  "problem": "Agents present decisions as bare lines that force the owner to reconstruct context, which is slow and error-prone.",
+  "triggers": ["decision for the owner", "approval needed", "open questions", "which option", "what should I decide", "open points summary"],
+  "install": {
+    "source": "skill/",
+    "target": ".claude/skills/decision-table/"
+  },
+  "compatible_with": ["claude-code"],
+  "requires": [],
+  "docs": {
+    "readme": "README.md",
+    "readme_nl": "README.nl.md",
+    "flow": "flow.svg"
+  },
+  "origin": {
+    "author": "DutchNetGuy",
+    "generalised_from": "the author's private agent environment",
+    "first_published": "2026-11-09"
+  }
+}
