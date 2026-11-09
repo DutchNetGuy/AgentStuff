@@ -15,7 +15,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
-VALID_TYPES = ("skill", "agent", "addition")
+VALID_TYPES = ("skill", "agent", "addition", "tool")
 
 # Required fields from docs/package-format.md; dotted names are nested.
 REQUIRED_STRINGS = (

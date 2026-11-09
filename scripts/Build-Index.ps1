@@ -15,7 +15,7 @@ param(
     [string]$RepoRoot = (Split-Path -Parent $PSScriptRoot)
 )
 
-$ValidTypes = @('skill', 'agent', 'addition')
+$ValidTypes = @('skill', 'agent', 'addition', 'tool')
 # Required fields from docs/package-format.md; dotted names are nested.
 $RequiredStrings = @(
     'name', 'type', 'version', 'summary', 'problem',

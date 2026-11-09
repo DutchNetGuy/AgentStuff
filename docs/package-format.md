@@ -14,10 +14,11 @@ packages/<name>/
   skill/             the installable part for type "skill" (contains SKILL.md)
   agent/             the installable part for type "agent" (agent profile file)
   addition/          the installable part for type "addition" (hook, instruction block, config)
+  tool/              the installable part for type "tool" (scripts, templates and assets that run on their own)
   examples/          how the author uses it, generalised (see PUBLISHING.md)
 ```
 
-Exactly one of `skill/`, `agent/`, `addition/` is present; it matches `type` in the manifest.
+Exactly one of `skill/`, `agent/`, `addition/`, `tool/` is present; it matches `type` in the manifest.
 
 ## README sections (people)
 
@@ -60,7 +61,7 @@ Exactly one of `skill/`, `agent/`, `addition/` is present; it matches `type` in 
 | Field | Required | Meaning |
 |---|---|---|
 | `name` | yes | folder name, lowercase, hyphens |
-| `type` | yes | `skill`, `agent` or `addition` |
+| `type` | yes | `skill`, `agent`, `addition` or `tool` |
 | `version` | yes | semantic version of the package |
 | `summary` | yes | one sentence, what it does |
 | `problem` | yes | one sentence, why it exists |
