@@ -1,0 +1,11 @@
+{
+  "_uitleg": "Knobs of the board. language: nl or en. fte_roles: human steps of these roles count as owner time.",
+  "taal": "en",
+  "titel": "Flow overview",
+  "werkdagen_per_jaar": 220,
+  "werkweken_per_jaar": 46,
+  "maanden_per_jaar": 11,
+  "uren_per_fte": 1600,
+  "fte_rollen": ["owner"],
+  "rollen": ["owner", "agent", "subagent", "queue", "unknown"]
+}

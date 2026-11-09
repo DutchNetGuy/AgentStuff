@@ -1,0 +1,30 @@
+{
+  "id": "H2",
+  "naam": "Publishing a package",
+  "soort": "flow",
+  "doel": "An internal skill, agent or tool is generalised, reviewed and shared publicly with an explanation and a drawing.",
+  "groep": "flow · repeats",
+  "prio": 2,
+  "frequentie": {"aantal": 3, "per": "maand"},
+  "heeft_nodig": [],
+  "afhankelijkheden": ["ticket-system", "github", "private-remote", "github-account", "cockpit", "render-tool", "publishing-policy", "index-generator"],
+  "versies": [
+    {
+      "versie": "1.0",
+      "naam": "lead + builder subagent, owner review",
+      "status": "huidig",
+      "bron": "measured on three packages, rough estimate 2026-11-09",
+      "onderhoud": {"uren_per_maand": 1, "stappen": [], "afhankelijkheden": ["index-generator", "publishing-policy"], "kennis": ["agent"]},
+      "stappen": [
+        {"naam": "create a ticket for the package", "wie": "agent", "soort": "werk", "uren": 0.1, "meetpunt": {"systeem": "ticket-system", "veld": "creation-time"}, "afhankelijkheden": ["ticket-system"]},
+        {"naam": "builder generalises and builds README, manifest, drawing", "wie": "subagent", "soort": "werk", "uren": 1, "afhankelijkheden": ["publishing-policy"]},
+        {"naam": "lead checks: generalisation grep, index, scripts run", "wie": "agent", "soort": "werk", "uren": 0.3, "afhankelijkheden": ["index-generator", "publishing-policy"]},
+        {"naam": "proof on the cockpit, looked at by the agent", "wie": "agent", "soort": "werk", "uren": 0.2, "afhankelijkheden": ["cockpit", "render-tool"]},
+        {"naam": "waiting for the owner's review", "wie": "owner", "soort": "wacht", "uren": 8, "afhankelijkheden": ["ticket-system"]},
+        {"naam": "owner reviews and says push", "wie": "owner", "soort": "mens", "uren": 0.2, "afhankelijkheden": ["cockpit"]},
+        {"naam": "merge to main, push to GitHub and the private remote", "wie": "agent", "soort": "werk", "uren": 0.1, "afhankelijkheden": ["github", "private-remote", "github-account"]},
+        {"naam": "ticket closed with the outcome", "wie": "agent", "soort": "werk", "uren": 0.1, "eind": "package visible on GitHub", "meetpunt": {"systeem": "ticket-system", "veld": "state-change"}, "afhankelijkheden": ["ticket-system"]}
+      ]
+    }
+  ]
+}

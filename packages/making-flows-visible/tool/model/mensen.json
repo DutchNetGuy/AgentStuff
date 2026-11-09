@@ -1,0 +1,7 @@
+{
+  "_uitleg": "Who exists: people and agents, with a role. Agents are listed too, so the board can show which knowledge sits with an agent and which only with the owner.",
+  "mensen": [
+    {"id": "owner", "naam": "Owner", "rol": "network engineer"},
+    {"id": "agent", "naam": "Agent", "rol": "lead agent"}
+  ]
+}

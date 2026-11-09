@@ -1,0 +1,52 @@
+{
+  "id": "H1",
+  "naam": "Firewall change",
+  "soort": "flow",
+  "doel": "A request is understood, checked against the sources, approved by the owner and applied with a trail.",
+  "groep": "flow · repeats",
+  "prio": 1,
+  "frequentie": {"aantal": 2, "per": "maand"},
+  "heeft_nodig": [],
+  "afhankelijkheden": ["ticket-system", "ipam", "firewall", "write-account", "admin-gui", "password-vault", "monitoring", "audit-log", "firewall-write-tool", "requester"],
+  "versies": [
+    {
+      "versie": "1.1",
+      "naam": "with agent and write tool",
+      "status": "huidig",
+      "bron": "estimate 2026-11-09; to be checked against ticket timestamps",
+      "onderhoud": {"uren_per_maand": 1, "stappen": [], "afhankelijkheden": ["firewall-write-tool"], "kennis": ["agent", "owner"]},
+      "stappen": [
+        {"naam": "request arrives on the ticket", "wie": "requester", "soort": "mens", "uren": 0.1, "start": "ticket created", "meetpunt": {"systeem": "ticket-system", "veld": "creation-time"}, "afhankelijkheden": ["ticket-system", "requester"]},
+        {"naam": "agent reads the ticket and checks it is complete", "wie": "agent", "soort": "werk", "uren": 0.2, "afhankelijkheden": ["ticket-system"]},
+        {"naam": "waiting for the requester to answer", "wie": "requester", "soort": "wacht", "uren": 4, "afhankelijkheden": ["requester"]},
+        {"naam": "collect facts: IPAM, current rules, monitoring", "wie": "agent", "soort": "werk", "uren": 0.3, "afhankelijkheden": ["ipam", "firewall", "monitoring"]},
+        {"naam": "write the rule proposal", "wie": "agent", "soort": "werk", "uren": 0.3, "afhankelijkheden": ["ipam"]},
+        {"naam": "test the proposal with the write tool", "wie": "agent", "soort": "werk", "uren": 0.1, "afhankelijkheden": ["firewall-write-tool", "password-vault"]},
+        {"naam": "post proposal and reason on the ticket", "wie": "agent", "soort": "werk", "uren": 0.1, "meetpunt": {"systeem": "ticket-system", "veld": "comment-time"}, "afhankelijkheden": ["ticket-system"]},
+        {"naam": "waiting for the owner's decision", "wie": "owner", "soort": "wacht", "uren": 8, "afhankelijkheden": ["ticket-system"]},
+        {"naam": "owner approves with a reason", "wie": "owner", "soort": "mens", "uren": 0.2, "afhankelijkheden": ["ticket-system"]},
+        {"naam": "write the rule to the candidate config", "wie": "agent", "soort": "werk", "uren": 0.1, "meetpunt": {"systeem": "audit-log", "veld": "write-event"}, "afhankelijkheden": ["firewall-write-tool", "write-account", "password-vault", "firewall"]},
+        {"naam": "owner checks the candidate in the GUI", "wie": "owner", "soort": "mens", "uren": 0.2, "afhankelijkheden": ["admin-gui", "firewall"]},
+        {"naam": "commit only our own changes", "wie": "agent", "soort": "werk", "uren": 0.1, "meetpunt": {"systeem": "audit-log", "veld": "commit-event"}, "afhankelijkheden": ["firewall-write-tool", "write-account", "firewall"]},
+        {"naam": "verify traffic and service status", "wie": "agent", "soort": "werk", "uren": 0.2, "afhankelijkheden": ["firewall", "monitoring"]},
+        {"naam": "outcome and reason on the ticket and in the audit log", "wie": "agent", "soort": "werk", "uren": 0.1, "eind": "ticket closed", "meetpunt": {"systeem": "ticket-system", "veld": "state-change"}, "afhankelijkheden": ["ticket-system", "audit-log"]}
+      ]
+    },
+    {
+      "versie": "1.0",
+      "naam": "manual in the GUI",
+      "status": "vervallen",
+      "bron": "estimate 2026-11-09, how it went before the write tool",
+      "onderhoud": {"uren_per_maand": 0, "stappen": []},
+      "stappen": [
+        {"naam": "request arrives (chat, memory)", "wie": "requester", "soort": "mens", "uren": 0.1},
+        {"naam": "waiting until the owner has time", "wie": "owner", "soort": "wacht", "uren": 24},
+        {"naam": "owner looks up addresses and zones", "wie": "owner", "soort": "mens", "uren": 0.5, "afhankelijkheden": ["ipam"]},
+        {"naam": "owner types the rule in the GUI", "wie": "owner", "soort": "mens", "uren": 0.5, "afhankelijkheden": ["admin-gui", "firewall"]},
+        {"naam": "full commit", "wie": "owner", "soort": "mens", "uren": 0.1, "afhankelijkheden": ["admin-gui", "firewall"]},
+        {"naam": "test whether it works", "wie": "owner", "soort": "mens", "uren": 0.3, "afhankelijkheden": ["firewall"]},
+        {"naam": "no record kept", "wie": "unknown", "soort": "mens", "uren": 0}
+      ]
+    }
+  ]
+}

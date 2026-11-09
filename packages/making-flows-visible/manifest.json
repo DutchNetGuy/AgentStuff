@@ -1,0 +1,24 @@
+{
+  "name": "making-flows-visible",
+  "type": "tool",
+  "version": "1.0.0",
+  "summary": "A flow board that shows, per flow, where time goes, what it leans on and which dependencies only one person or agent knows.",
+  "problem": "A drawing of a flow shows the steps but hides waiting time, dependencies and single points of knowledge, so nobody sees what breaks when one person is away.",
+  "triggers": ["value stream", "dependencies", "bottleneck", "waiting time", "single point of knowledge", "flow board"],
+  "install": {
+    "source": "tool/",
+    "target": "tools/flow-board/"
+  },
+  "compatible_with": ["claude-code", "any agent that can run a script"],
+  "requires": [],
+  "docs": {
+    "readme": "README.md",
+    "readme_nl": "README.nl.md",
+    "flow": "flow.svg"
+  },
+  "origin": {
+    "author": "DutchNetGuy",
+    "generalised_from": "the author's private agent environment",
+    "first_published": "2026-11-09"
+  }
+}

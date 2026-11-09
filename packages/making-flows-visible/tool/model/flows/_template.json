@@ -1,0 +1,58 @@
+{
+  "_": [
+    "TEMPLATE for a new flow or task. Copy this file to flows/<id>.json (for example flows/H3.json) and fill everything in. The board skips files whose name starts with an underscore, so this file itself is ignored.",
+    "Every key that starts with an underscore is a note for you; the generator ignores it. Keep or delete it.",
+    "JSON rules: every text in double quotes, a comma after every field except the last, decimals with a dot (0.5).",
+    "A step is one line with: naam (what happens), wie (who), soort (kind), uren (hours), and optionally start, eind, meetpunt and afhankelijkheden. The field names are Dutch on purpose; see the field table in README.md."
+  ],
+  "_id": "short unique name, a capital letter plus a digit; must equal the file name (H3.json)",
+  "id": "H3",
+  "_naam": "what readers see on the board",
+  "naam": "Name of the flow",
+  "_soort": "flow = repeats and is measurable per ticket | taak = happens once (a task)",
+  "soort": "flow",
+  "_doel": "one sentence: what does it deliver and for whom",
+  "doel": "One sentence: what it delivers and for whom.",
+  "_groep": "free text shown under the name on the board",
+  "groep": "flow · repeats",
+  "_prio": "whole number. Lower = higher on the board; duplicates allowed. 5 is a fine start.",
+  "prio": 5,
+  "_tekening": "path to an SVG you put in a drawings folder, for example tekeningen/my-flow.svg. Empty string = no drawing yet",
+  "tekening": "",
+  "_frequentie": "only for soort flow. per = werkdag | week | maand (workday, week, month). Remove this line for a task.",
+  "frequentie": {"aantal": 10, "per": "week"},
+  "_heeft_nodig": "other flows or tasks that must exist first. Bare id or with a reason: [\"H1\", {\"id\": \"H2\", \"waarom\": \"the inventory must exist\"}]",
+  "heeft_nodig": [],
+  "_afhankelijkheden": "everything this flow leans on: ids from afhankelijkheden.json. If something is missing, add it there first.",
+  "afhankelijkheden": ["ticket-system", "requester"],
+  "_versies": "at least one version. A second version (for example the future way of working) is a new block after the first, separated by a comma.",
+  "versies": [
+    {
+      "versie": "1.0",
+      "naam": "current",
+      "status": "huidig",
+      "_status": "huidig = current | ontwerp = design | vervallen = retired",
+      "bron": "estimate; still to be checked against ticket data",
+      "onderhoud": {
+        "_": "time needed to keep this version running; 0 is fine. Optional: stappen (own maintenance steps, same shape as below), afhankelijkheden (list of ids), kennis (list of person ids).",
+        "uren_per_maand": 0,
+        "stappen": []
+      },
+      "_stappen": [
+        "the timeline of one ticket, from start to end, one line per step",
+        "naam = what happens",
+        "wie = a person id (mensen.json), a dependency id (for example an external party) or a role from config.json (owner, agent, subagent, queue, unknown). Do not know? unknown.",
+        "soort = mens (a human works on it) | werk (an agent or script works on it) | wacht (nobody of ours works on it, waiting)",
+        "uren = time of this step per ticket, decimals allowed (0.5)",
+        "start / eind = (optional) the moment the step starts and ends, in plain words",
+        "meetpunt = (optional) which system already records that moment: {\"systeem\": \"ticket-system\", \"veld\": \"creation-time\"}; systeem \"geen\" (none) = only found through an interview or a log",
+        "afhankelijkheden = (optional) ids of what this one step leans on; shown as chips under the step"
+      ],
+      "stappen": [
+        {"naam": "submit the request", "wie": "requester", "soort": "mens", "uren": 0.5, "start": "form opened", "eind": "ticket created", "meetpunt": {"systeem": "ticket-system", "veld": "creation-time"}, "afhankelijkheden": ["ticket-system", "requester"]},
+        {"naam": "waiting for approval", "wie": "owner", "soort": "wacht", "uren": 24},
+        {"naam": "carry out and close", "wie": "agent", "soort": "werk", "uren": 0.2}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "_uitleg": "Everything a flow leans on. knowledge = who knows or runs it (ids from mensen.json); extern = a party outside your own organisation.",
+  "afhankelijkheden": [
+    {"id": "ticket-system", "naam": "Ticket system (tickets, decisions, comments)", "type": "systeem", "kennis": ["owner", "agent"]},
+    {"id": "ipam", "naam": "IPAM (zones, prefixes, addresses)", "type": "data", "kennis": ["owner"]},
+    {"id": "firewall", "naam": "Firewall (rules, candidate, commit)", "type": "systeem", "kennis": ["owner"]},
+    {"id": "write-account", "naam": "Write account on the firewall (API)", "type": "recht", "kennis": ["owner"]},
+    {"id": "admin-gui", "naam": "Admin GUI of the firewall", "type": "recht", "kennis": ["owner"]},
+    {"id": "password-vault", "naam": "Password vault (keys for tools)", "type": "systeem", "kennis": ["owner", "agent"]},
+    {"id": "monitoring", "naam": "Monitoring (service status)", "type": "data", "kennis": ["owner", "agent"]},
+    {"id": "audit-log", "naam": "Audit log (who did what when)", "type": "data", "kennis": ["agent"]},
+    {"id": "firewall-write-tool", "naam": "Firewall write tool (test, write, commit)", "type": "tool", "kennis": ["agent", "owner"]},
+    {"id": "requester", "naam": "Requester (who wants the change)", "type": "mens", "kennis": [], "extern": true},
+    {"id": "github", "naam": "GitHub (public catalogue)", "type": "systeem", "kennis": ["owner"], "extern": true},
+    {"id": "private-remote", "naam": "Private git remote (backup)", "type": "systeem", "kennis": ["owner", "agent"]},
+    {"id": "github-account", "naam": "GitHub account and CLI login", "type": "recht", "kennis": ["owner"]},
+    {"id": "cockpit", "naam": "Cockpit (proofs, pages)", "type": "systeem", "kennis": ["agent"]},
+    {"id": "render-tool", "naam": "Render tool (view a page as an image)", "type": "tool", "kennis": ["agent"]},
+    {"id": "publishing-policy", "naam": "Publishing policy (generalise, no attribution)", "type": "proces", "kennis": ["owner", "agent"]},
+    {"id": "index-generator", "naam": "Index generator of the catalogue", "type": "tool", "kennis": ["agent"]}
+  ]
+}
