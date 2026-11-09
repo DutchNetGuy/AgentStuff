@@ -99,7 +99,7 @@ const TEKST = {
     kpiKlein: "Valt die ene kenner weg, dan staat de flow stil. Een externe partij met één kenner telt mee.",
     thPrio: "Prio", thFlow: "Flow", thDoorloop: "Doorlooptijd",
     thLeunt: "Leunt op mij", thLeuntTitel: "aantal stromen dat deze stroom nodig heeft",
-    thFreq: "Frequentie · FTE", thFreqTitel: "frequentie en FTE: frequentie x engineer-uren per keer + onderhoud, gedeeld door uren per FTE",
+    thFreq: "Frequentie · FTE", thFreqTitel: "frequentie en FTE: frequentie x menselijke uren per keer + onderhoud, gedeeld door uren per FTE",
     thAfh: "Afhankelijkheden", thEnkel: "Enkel punt", thEnkelTitel: "aantal afhankelijkheden met precies één kenner",
     thKennisBij: "Kennis bij", thKennisBijTitel: "wie kennis heeft van de afhankelijkheden van deze stroom",
     kopMensen: "Wie draagt het meeste", kopDeps: "Alle afhankelijkheden, enkel punt eerst",
@@ -113,7 +113,8 @@ const TEKST = {
     kopTekening: "Tekening", kopDeps2: "Afhankelijkheden", kopTijdlijn: "Tijdlijn",
     heeftNodig: "Heeft nodig:", leuntOp: "Leunt op mij:",
     tekHint: "Tekening van de flow: klik voor groot.", geenTek: "Nog geen tekening voor deze stroom.",
-    engineerPerKeer: u => `engineer ${u} u per keer`, bronUren: "bron van de uren", BronUren: "Bron van de uren",
+    per: { werkdag: "werkdag", week: "week", maand: "maand" },
+    engineerPerKeer: u => `menselijke tijd ${u} u per keer`, bronUren: "bron van de uren", BronUren: "Bron van de uren",
     stappen: "Stappen", uitklappen: "klik om uit te klappen",
     kennisBij: "Kennis bij:", leuntEen: "stroom leunt", leuntMeer: "stromen leunen", valtWeg: "hierop. Valt dit weg, dan staan deze stil:"
   },
@@ -135,7 +136,7 @@ const TEKST = {
     kpiKlein: "If that one expert drops out, the flow stops. An external party with one expert counts too.",
     thPrio: "Prio", thFlow: "Flow", thDoorloop: "Lead time",
     thLeunt: "Relied on by", thLeuntTitel: "number of streams that need this stream",
-    thFreq: "Frequency · FTE", thFreqTitel: "frequency and FTE: frequency x engineer hours per run + maintenance, divided by hours per FTE",
+    thFreq: "Frequency · FTE", thFreqTitel: "frequency and FTE: frequency x human hours per run + maintenance, divided by hours per FTE",
     thAfh: "Dependencies", thEnkel: "Single point", thEnkelTitel: "number of dependencies with exactly one expert",
     thKennisBij: "Knowledge held by", thKennisBijTitel: "who knows the dependencies of this stream",
     kopMensen: "Who carries the most", kopDeps: "All dependencies, single points first",
@@ -149,7 +150,8 @@ const TEKST = {
     kopTekening: "Drawing", kopDeps2: "Dependencies", kopTijdlijn: "Timeline",
     heeftNodig: "Needs:", leuntOp: "Relied on by:",
     tekHint: "Drawing of the flow: click to enlarge.", geenTek: "No drawing for this stream yet.",
-    engineerPerKeer: u => `engineer ${u} h per run`, bronUren: "source of the hours", BronUren: "Source of the hours",
+    per: { werkdag: "working day", week: "week", maand: "month" },
+    engineerPerKeer: u => `human time ${u} h per run`, bronUren: "source of the hours", BronUren: "Source of the hours",
     stappen: "Steps", uitklappen: "click to expand",
     kennisBij: "Knowledge held by:", leuntEen: "stream relies", leuntMeer: "streams rely", valtWeg: "on this. If it drops out, these stop:"
   }
@@ -296,7 +298,7 @@ function renderOverview() {
       <td>${buildBarMetPct(s)}</td>
       <td class="uren" style="white-space:nowrap">${formatUren(getTotaalUren(s))}</td>
       ${toonBelang ? `<td class="score">${getBelang(s) || "–"}</td>` : ""}
-      <td class="uren">${isFlow(s) ? `${s.frequentie.aantal}/${s.frequentie.per} · <b>${formatFte(getFte(s))}</b>` : "–"}</td>
+      <td class="uren">${isFlow(s) ? `${s.frequentie.aantal}/${T.per[s.frequentie.per] || s.frequentie.per} · <b>${formatFte(getFte(s))}</b>` : "–"}</td>
       <td>${buildDepSamenvatting(s)}</td>
       <td class="score"><span class="groot${n ? "" : " nul"}">${n || "–"}</span></td>
       <td>${buildMensChips(getMensenVanStream(s))}</td>
