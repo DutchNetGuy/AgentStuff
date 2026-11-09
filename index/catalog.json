@@ -2,6 +2,22 @@
   "generated": "2026-11-09",
   "packages": [
     {
+      "name": "cockpit",
+      "type": "tool",
+      "version": "1.0.0",
+      "summary": "A presentation layer that lets an agent publish rich output as a readable web page instead of a wall of chat text.",
+      "problem": "Long or structured agent output (reports, comparisons, diagnoses, decision lists) is hard to scan and impossible to find again when it lives in a chat.",
+      "triggers": [
+        "long answer",
+        "report",
+        "comparison table",
+        "show in browser",
+        "present to users",
+        "page instead of chat"
+      ],
+      "path": "packages/cockpit/"
+    },
+    {
       "name": "exploring-first",
       "type": "skill",
       "version": "1.0.0",

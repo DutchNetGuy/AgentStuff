@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cockpit</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --focus:#1a2030; --border:#30363d;
+    --text:#e6edf3; --muted:#8b949e; --heading:#79c0ff; --new:#3fb950;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;margin:0;}
+  body{background:var(--bg);color:var(--text);
+    font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;}
+
+  .top{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:.6rem 1rem;border-bottom:1px solid var(--border);background:var(--panel);}
+  .top h1{font-size:1rem;color:var(--heading);margin:0;}
+  .top .sub{color:var(--muted);font-size:.8rem;margin-left:.6rem;font-weight:400;}
+  .top .actions{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end;}
+  .top .btn{background:#21262d;border:1px solid var(--border);color:var(--text);
+    font-size:.85rem;padding:.35rem .8rem;border-radius:6px;cursor:pointer;text-decoration:none;}
+  .top .btn:hover{border-color:var(--heading);}
+
+  .cockpit{display:grid;grid-template-columns:1fr 260px;height:calc(100% - 49px);}
+  .pane{overflow-y:auto;}
+  .pane.mid{background:var(--focus);padding:0;}
+  .pane.right{border-left:1px solid var(--border);background:var(--panel);padding:1rem 1.1rem;}
+  .tag{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:.6rem;}
+
+  /* focus = iframe showing the selected page */
+  #focus-frame{width:100%;height:100%;border:0;display:block;background:var(--bg);}
+
+  /* page navigation (right) */
+  .art{display:block;width:100%;text-align:left;padding:.55rem .6rem;border:1px solid var(--border);
+    border-radius:6px;margin-bottom:.5rem;font-size:.82rem;color:var(--text);cursor:pointer;background:#0d1117;font-family:inherit;}
+  .art:hover{border-color:var(--heading);}
+  .art.now{border-color:var(--heading);background:#172033;}
+  .art .t{color:var(--heading);font-weight:600;display:block;}
+  .art .d{color:var(--muted);font-size:.72rem;margin-top:.15rem;display:block;}
+  .badge{color:var(--new);font-size:.66rem;font-weight:700;text-transform:uppercase;
+    letter-spacing:.06em;border:1px solid var(--new);border-radius:4px;padding:0 .3rem;margin-left:.35rem;}
+  .empty{color:var(--muted);font-size:.8rem;}
+  .hint{color:var(--muted);font-size:.72rem;margin-top:1rem;}
+
+  .tabs{display:none;}
+  @media (max-width:800px){
+    .tabs{display:flex;border-bottom:1px solid var(--border);background:var(--panel);}
+    .tabs button{flex:1;background:none;border:none;color:var(--muted);cursor:pointer;
+      padding:.65rem .5rem;font-size:.85rem;border-bottom:2px solid transparent;}
+    .tabs button.active{color:var(--heading);border-bottom-color:var(--heading);}
+    .cockpit{grid-template-columns:1fr;height:calc(100% - 49px - 42px);}
+    .pane{display:none;}
+    .pane.show{display:block;}
+    .pane.mid.show{height:70vh;}
+    .pane.right{border-left:none;}
+  }
+</style>
+</head>
+<body>
+  <div class="top">
+    <h1><span id="site-title">Cockpit</span><span class="sub" id="site-subtitle"></span></h1>
+    <div class="actions">
+      <a class="btn" id="export" href="#" download>Export (.html)</a>
+      <a class="btn" id="open-tab" href="#" target="_blank" rel="noopener">Open in new tab</a>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button data-pane="mid" class="active" onclick="showPane('mid')">Focus</button>
+    <button data-pane="right" onclick="showPane('right')">Pages</button>
+  </div>
+
+  <div class="cockpit">
+
+    <div class="pane mid">
+      <iframe id="focus-frame" title="Focus: selected page"></iframe>
+    </div>
+
+    <div class="pane right">
+      <span class="tag">Pages</span>
+      <div id="artifact-list"><div class="empty">Loading...</div></div>
+      <div class="hint">Newest first. Click a page and the focus panel switches.
+        The list comes from <code>artifacts.json</code>.</div>
+    </div>
+
+  </div>
+
+  <script>
+    // All text from the manifest and config is written with textContent, never as markup.
+    var current = null;
+
+    function setText(id, text){
+      document.getElementById(id).textContent = text;
+    }
+
+    function emptyMessage(list, text){
+      list.textContent = '';
+      var d = document.createElement('div');
+      d.className = 'empty';
+      d.textContent = text;
+      list.appendChild(d);
+    }
+
+    function selectArtifact(item, el){
+      current = item;
+      document.getElementById('focus-frame').src = item.file;
+      document.getElementById('open-tab').href = item.file;
+      var ex = document.getElementById('export');
+      ex.href = item.file;
+      ex.setAttribute('download', item.file.split('/').pop());
+      document.querySelectorAll('.art').forEach(function(a){ a.classList.remove('now'); });
+      if (el) el.classList.add('now');
+    }
+
+    function renderList(items){
+      var list = document.getElementById('artifact-list');
+      if (!items || !items.length){
+        emptyMessage(list, 'No pages yet. An agent publishes them with the generator script.');
+        return;
+      }
+      list.textContent = '';
+      items.forEach(function(item, i){
+        var el = document.createElement('button');
+        el.className = 'art';
+        var t = document.createElement('span');
+        t.className = 't';
+        t.textContent = item.title || item.slug || item.file;
+        if (i === 0){
+          var b = document.createElement('span');
+          b.className = 'badge';
+          b.textContent = 'new';
+          t.appendChild(b);
+        }
+        var d = document.createElement('span');
+        d.className = 'd';
+        d.textContent = item.generated || '';
+        el.appendChild(t);
+        el.appendChild(d);
+        el.onclick = function(){ selectArtifact(item, el); };
+        list.appendChild(el);
+        if (i === 0) selectArtifact(item, el); // newest page goes straight to focus
+      });
+    }
+
+    function applyConfig(cfg){
+      if (!cfg) return;
+      if (cfg.title){ setText('site-title', cfg.title); document.title = cfg.title; }
+      if (cfg.subtitle){ setText('site-subtitle', cfg.subtitle); }
+    }
+
+    // Optional config; the shell works without it.
+    fetch('config.json', {cache:'no-store'})
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(applyConfig)
+      .catch(function(){ /* keep the "Cockpit" fallback */ });
+
+    fetch('artifacts.json', {cache:'no-store'})
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(renderList)
+      .catch(function(e){
+        emptyMessage(document.getElementById('artifact-list'),
+          'Could not load artifacts.json (' + e.message + ').');
+      });
+
+    function showPane(which){
+      document.querySelectorAll('.cockpit .pane').forEach(function(p){
+        p.classList.toggle('show', p.classList.contains(which));
+      });
+      document.querySelectorAll('.tabs button').forEach(function(b){
+        b.classList.toggle('active', b.getAttribute('data-pane')===which);
+      });
+    }
+    showPane('mid');
+  </script>
+</body>
+</html>

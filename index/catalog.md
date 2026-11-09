@@ -4,4 +4,5 @@ Generated 2026-11-09 from the package manifests. Do not edit by hand; change a m
 
 | Package | Type | Version | Problem it solves | Triggers |
 |---|---|---|---|---|
+| [cockpit](../packages/cockpit/README.md) | tool | 1.0.0 | Long or structured agent output (reports, comparisons, diagnoses, decision lists) is hard to scan and impossible to find again when it lives in a chat. | long answer, report, comparison table, show in browser, present to users, page instead of chat |
 | [exploring-first](../packages/exploring-first/README.md) | skill | 1.0.0 | An agent trained to answer completely mixes research and conclusion in one response, which produces premature conclusions. | troubleshooting, diagnosis, research, project history, three or more tool calls expected |
