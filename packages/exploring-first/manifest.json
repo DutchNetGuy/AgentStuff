@@ -1,0 +1,24 @@
+{
+  "name": "exploring-first",
+  "type": "skill",
+  "version": "1.0.0",
+  "summary": "Separate gathering information from drawing conclusions by delegating the gathering to a subagent.",
+  "problem": "An agent trained to answer completely mixes research and conclusion in one response, which produces premature conclusions.",
+  "triggers": ["troubleshooting", "diagnosis", "research", "project history", "three or more tool calls expected"],
+  "install": {
+    "source": "skill/",
+    "target": ".claude/skills/exploring-first/"
+  },
+  "compatible_with": ["claude-code"],
+  "requires": [],
+  "docs": {
+    "readme": "README.md",
+    "readme_nl": "README.nl.md",
+    "flow": "flow.svg"
+  },
+  "origin": {
+    "author": "DutchNetGuy",
+    "generalised_from": "the author's private agent environment",
+    "first_published": "2026-11-09"
+  }
+}
