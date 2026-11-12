@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-16",
+  "generated": "2026-11-17",
   "packages": [
     {
       "name": "cockpit",
@@ -48,6 +48,27 @@
         "look at it as the IT leader"
       ],
       "path": "packages/it-leader/"
+    },
+    {
+      "name": "logging-agent-events",
+      "type": "addition",
+      "version": "1.0.0",
+      "summary": "A hook writes every tool call of an AI agent, masked and shortened, to a local SQLite event log; the agent adds deliberate events such as decisions and blockers through the same script.",
+      "problem": "An agent forgets what it did once the context fills up or the session ends, and an instruction to log important steps is dropped exactly when the agent is busy.",
+      "triggers": [
+        "audit trail",
+        "what did the agent do",
+        "where were we",
+        "session start",
+        "event log",
+        "hook logging",
+        "parallel agents",
+        "agent identity",
+        "log retention",
+        "cleanup",
+        "mask secrets in logs"
+      ],
+      "path": "packages/logging-agent-events/"
     },
     {
       "name": "making-flows-visible",

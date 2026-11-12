@@ -1,0 +1,24 @@
+{
+  "name": "logging-agent-events",
+  "type": "addition",
+  "version": "1.0.0",
+  "summary": "A hook writes every tool call of an AI agent, masked and shortened, to a local SQLite event log; the agent adds deliberate events such as decisions and blockers through the same script.",
+  "problem": "An agent forgets what it did once the context fills up or the session ends, and an instruction to log important steps is dropped exactly when the agent is busy.",
+  "triggers": ["audit trail", "what did the agent do", "where were we", "session start", "event log", "hook logging", "parallel agents", "agent identity", "log retention", "cleanup", "mask secrets in logs"],
+  "install": {
+    "source": "addition/",
+    "target": "tools/agent-events/"
+  },
+  "compatible_with": ["claude-code"],
+  "requires": [],
+  "docs": {
+    "readme": "README.md",
+    "readme_nl": "README.nl.md",
+    "flow": "flow.svg"
+  },
+  "origin": {
+    "author": "DutchNetGuy",
+    "generalised_from": "the author's private agent environment",
+    "first_published": "2026-11-12"
+  }
+}
