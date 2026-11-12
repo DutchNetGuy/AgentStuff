@@ -12,6 +12,17 @@ A hook fires after every tool call and hands the call to a small script, which m
 
 The result is a local, queryable record of what the agent did, next to your tracker (what should happen) and the agent's memory (what it remembers).
 
+## Which hooks
+
+A hook is a built-in feature of Claude Code: at a fixed moment it runs a command that you name in `.claude/settings.json`. You do not build the hook. You install the script and add two entries (they are in `addition/hooks.example.json`):
+
+| Hook event | Fires | The script writes |
+|---|---|---|
+| `PostToolUse` | after every successful tool call: shell command, file edit, search, web fetch | one row with `success = 1` |
+| `PostToolUseFailure` | after every failed tool call | one row with `success = 0` and the error text |
+
+Both entries use matcher `*` (every tool) and `async: true`, so the agent does not wait for the write. Claude Code hands the call to the script as JSON on standard input: session id, tool name, the input and the result.
+
 ## Flow
 
 ![What happens when an agent logs its events](flow.svg)

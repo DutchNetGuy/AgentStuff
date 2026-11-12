@@ -12,6 +12,17 @@ Een hook vuurt na elke tool-aanroep en geeft die door aan een klein script. Dat 
 
 Het resultaat is een lokaal, doorzoekbaar verslag van wat de agent deed, naast je takenlijst (wat moet er gebeuren) en het geheugen van de agent (wat onthoudt hij).
 
+## Welke hooks
+
+Een hook is een ingebouwde functie van Claude Code: op een vast moment draait die een commando dat je in `.claude/settings.json` opgeeft. De hook bouw je niet. Je installeert het script en voegt twee regels toe (ze staan in `addition/hooks.example.json`):
+
+| Hook-moment | Vuurt | Het script schrijft |
+|---|---|---|
+| `PostToolUse` | na elke geslaagde tool-aanroep: shell-commando, bestandswijziging, zoekactie, webpagina ophalen | één rij met `success = 1` |
+| `PostToolUseFailure` | na elke mislukte tool-aanroep | één rij met `success = 0` en de fouttekst |
+
+Beide regels gebruiken matcher `*` (elke tool) en `async: true`, zodat de agent niet op het schrijven wacht. Claude Code geeft de aanroep als JSON op standaard-invoer aan het script: sessie-id, toolnaam, de invoer en het resultaat.
+
 ## Stroom
 
 ![Wat er gebeurt als een agent zijn events logt](flow.svg)
