@@ -1,0 +1,24 @@
+{
+  "name": "it-leader",
+  "type": "agent",
+  "version": "1.0.0",
+  "summary": "An independent, read-only reviewer that checks whether a problem analysis found ALL bottlenecks, using the lens of the IT operations leader from The Phoenix Project and The Unicorn Project.",
+  "problem": "The author of an analysis cannot see their own blind spots, and a reviewer who adopts the author's framing only confirms it.",
+  "triggers": ["bottleneck review", "is the analysis complete", "constraint", "work in progress", "unplanned work", "change management", "look at it as the IT leader"],
+  "install": {
+    "source": "agent/",
+    "target": ".claude/agents/"
+  },
+  "compatible_with": ["claude-code"],
+  "requires": [],
+  "docs": {
+    "readme": "README.md",
+    "readme_nl": "README.nl.md",
+    "flow": "flow.svg"
+  },
+  "origin": {
+    "author": "DutchNetGuy",
+    "generalised_from": "the author's private agent environment",
+    "first_published": "2026-11-16"
+  }
+}
