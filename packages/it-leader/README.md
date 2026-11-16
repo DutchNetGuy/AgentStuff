@@ -19,7 +19,10 @@ has read-only tools, so it cannot change anything.
 
 The lens lives in a separate knowledge file that the agent reads at the start of every run. Each claim
 in that file carries a status (CONFIRMED or UNCONFIRMED), and the agent must say when a judgement leans
-on an unconfirmed claim.
+on an unconfirmed claim. The file also holds sixteen **example patterns**: general work situations in
+the author's own words (for example "one overloaded expert" or "a change process that exists on paper
+but is bypassed"), each with the bottleneck it signals and a review question. They are not scenes from
+the books.
 
 ## Flow
 
@@ -37,12 +40,32 @@ analysis against the lens, and a five-part verdict coming back that the caller m
 | You want a viewpoint that does not simply agree with you | You need a fact checked against a source (use a factcheck step) |
 | Reviewing a process for waiting, hidden work and bypassed change control | The analysis is not written down yet |
 
+## Use it in two rounds
+
+One review finds most bottlenecks, not all. Run a second, fresh review with the first verdict attached
+and a fixed follow-up question:
+
+> Which bottleneck did you miss? Walk through every concept and every example pattern in your knowledge
+> file and lay each one next to the analysis. Where do you disagree with your own first round?
+
+Each round is a one-shot run, so nothing depends on a long back-and-forth with the reviewer.
+
 ## Evidence
 
-No controlled study. The design rests on one observation from the author's own use: a reviewer given
-the caller's framing tends to confirm it, while a reviewer with a fixed external lens, no solution
-mode and a mandatory "where do I disagree" section produces findings the author had not listed. Treat
-this as a method to try, not as proven.
+One small test (November 2026), not a controlled study. One real problem analysis of about 3,200 words
+was reviewed by three variants, each run twice in two rounds, and judged blind by a separate run:
+
+| Variant | Blind rank | Depth (1-5) |
+|---|---|---|
+| Concepts only (version 1.0.0) | 5 and 6 | 3 |
+| Concepts plus example patterns (this version) | 3 and 4 | 4 |
+| The author's private version with richer, book-based examples | 1 and 2 | 5 |
+
+The number of grounded bottlenecks was similar for all (23 to 26); the difference was in depth and
+concreteness. The second round added 7 to 9 grounded findings per run, about a third of the total. The
+design idea behind the agent: a reviewer given the caller's framing tends to confirm it, while one with
+a fixed external lens and a mandatory "where do I disagree" section finds what the author had not
+listed. Treat all of this as an indication, not as proof.
 
 ## Install
 
@@ -51,6 +74,7 @@ this as a method to try, not as proven.
 2. Adapt the review focus. The agent text says "the phase under review"; tell the agent in your call
    which phase or scope you mean.
 3. Call it with the analysis to review (paths or pasted text). See `examples/example-call.md`.
+4. Then run the second round (see "Use it in two rounds").
 
 ## Sources
 

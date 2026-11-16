@@ -24,3 +24,9 @@ that lean on unconfirmed claims. No solutions.
 - Part 4 (open questions) goes to the owner by the caller; the reviewer never contacts the owner.
 - Run it one-shot: the review comes back as a final report, which is more reliable than a long
   back-and-forth with the reviewer.
+- Then a second one-shot run with the first verdict attached:
+
+> Here is your first review of `<project-root>/docs/analysis/<topic>/problem-report.md`. Which bottleneck
+> did you miss? Walk through every concept and every example pattern in your knowledge file and lay each
+> one next to the report. Where do you disagree with your own first round? Return only additions and
+> corrections, with evidence.

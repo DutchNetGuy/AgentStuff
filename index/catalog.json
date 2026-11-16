@@ -35,7 +35,7 @@
     {
       "name": "it-leader",
       "type": "agent",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "summary": "An independent, read-only reviewer that checks whether a problem analysis found ALL bottlenecks, using the lens of the IT operations leader from The Phoenix Project and The Unicorn Project.",
       "problem": "The author of an analysis cannot see their own blind spots, and a reviewer who adopts the author's framing only confirms it.",
       "triggers": [
