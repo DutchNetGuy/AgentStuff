@@ -43,8 +43,8 @@ A visible board with a limit on work in progress makes queues and invisible work
 
 - A change board can exist on paper and still be dead: nobody uses the tool, the form is too heavy,
   approval is slow, so everybody labels everything an emergency.
-- A change is any activity on applications, databases, operating systems, network or hardware that can
-  affect delivered services. Agreeing this definition takes real discussion.
+- Agree on what counts as a change: in short, anything done to the systems behind a service that could
+  affect that service. Reaching this shared definition takes real discussion.
 - Visible change cards: one change per card, who plans it, which system, one sentence of what.
   Approved cards sit on a shared calendar.
 - Triage by risk (roughly 80/20: a small share of the changes carries most of the risk): fragile,
